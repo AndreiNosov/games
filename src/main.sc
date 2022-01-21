@@ -12,6 +12,7 @@ theme: /comMod_BullsAndCowsGame
 
     state: Start
         q!: $regex</start>
+        intent!: /привет
         script:
             $temp.botName = capitalize($injector.botName);
         random: 
@@ -25,10 +26,6 @@ theme: /comMod_BullsAndCowsGame
             script:
                 checkCustomAnsToGo();
             go!: /comMod_BullsAndCowsGame/BullsAndCows
-            
-    state: Hello
-        intent!: /привет
-        a: Привет привет
     
     state: BullsAndCows
         q!: BullsAndCows
