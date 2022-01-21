@@ -1,23 +1,123 @@
 {
   "positions" : [ {
+    "id" : "/comMod_BullsAndCowsGame/BullsRules",
+    "x" : 220,
+    "y" : 376
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/GameOn/react_HowToPlay",
+    "x" : 2600,
+    "y" : 0
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/GameOn/react_Stop",
+    "x" : 3620,
+    "y" : 0
+  }, {
     "id" : "/NoMatch",
     "x" : 220,
     "y" : 676
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/BullsAndCows",
+    "x" : 900,
+    "y" : 0
   }, {
     "id" : "/Start",
     "x" : 220,
     "y" : 136
   }, {
+    "id" : "/comMod_BullsAndCowsGame/GameOn/react_Number",
+    "x" : 1920,
+    "y" : 0
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/MoreThanTwoIncorrectNumbers",
+    "x" : 2260,
+    "y" : 920
+  }, {
+    "id" : "/Hello/DoYouWantToPlayBullsAndCows",
+    "x" : 560,
+    "y" : 320
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/WannaPlayAgain/react_No",
+    "x" : 3280,
+    "y" : 172
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/GameOn/react_WannaGiveUp/react_Yes",
+    "x" : 2260,
+    "y" : 268
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/GameOn/react_WannaGiveUp/react_No",
+    "x" : 2260,
+    "y" : 440
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/GameOn/react_WannaGiveUp",
+    "x" : 1920,
+    "y" : 332
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/Continue",
+    "x" : 2600,
+    "y" : 284
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/Hello",
+    "x" : 220,
+    "y" : 204
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/Stop",
+    "x" : 3280,
+    "y" : 344
+  }, {
+    "id" : "/techEndOfTheme",
+    "x" : 3960,
+    "y" : 0
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/Bye",
+    "x" : 220,
+    "y" : 548
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/GameOn/react_IncorrectNumber",
+    "x" : 1580,
+    "y" : 0
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/Start",
+    "x" : 220,
+    "y" : 0
+  }, {
     "id" : "/Bye",
     "x" : 220,
     "y" : 504
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/GameOn/IDontKnow",
+    "x" : 2260,
+    "y" : 612
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/NoMatch",
+    "x" : 220,
+    "y" : 720
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/GameOn",
+    "x" : 1240,
+    "y" : 0
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/GameOn/react_Undef",
+    "x" : 2260,
+    "y" : 0
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/GiveUp",
+    "x" : 2600,
+    "y" : 456
   }, {
     "id" : "/Hello",
     "x" : 220,
     "y" : 320
   }, {
-    "id" : "/Hello/DoYouWantToPlayBullsAndCows",
+    "id" : "/comMod_BullsAndCowsGame/WannaPlayAgain",
+    "x" : 2940,
+    "y" : 0
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/Start/ReactYes",
     "x" : 560,
-    "y" : 320
+    "y" : 0
+  }, {
+    "id" : "/comMod_BullsAndCowsGame/WannaPlayAgain/react_Yes",
+    "x" : 3280,
+    "y" : 0
   } ]
 }

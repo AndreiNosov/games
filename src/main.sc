@@ -12,9 +12,11 @@ theme: /comMod_BullsAndCowsGame
 
     state: Start
         q!: $regex</start>
+        script:
+            $temp.botName = capitalize($injector.botName);
         random: 
-            a: Привет. Я Бот Рубик. Умею играть в Быки и коровы. Сыграем?
-            a: Приветствую. Меня зовут Рубик. Я могу поиграть с Вами Быки и коровы. Сыграем?
+            a: Привет. Я Бот {{temp.botName}}. Умею играть в Быки и коровы. Сыграем?
+            a: Приветствую. Меня зовут {{temp.botName}}. Я могу поиграть с Вами Быки и коровы. Сыграем?
             
         state: ReactYes
             q: {[$beginningWords] [$interjections]} ($yes/$yesAgreeTo/$certainly/$want) {[$please] [$interjections]}
@@ -33,7 +35,6 @@ theme: /comMod_BullsAndCowsGame
         script:
             $client.isFirstGame = true;
         go!: /comMod_BullsAndCowsGame/GameOn
-
 
     state: GameOn || modal = true
         if: $client.isFirstGame == true
@@ -208,7 +209,6 @@ theme: /comMod_BullsAndCowsGame
         random: 
             a: Переформулируйте, пожалуйста.
             a: Скажите по-другому.
-
 
 
 

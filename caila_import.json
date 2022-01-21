@@ -1,7 +1,7 @@
 {
   "project" : {
-    "id" : "games-1000006009-HNm",
-    "name" : "games-1000006009-HNm",
+    "id" : "game-1000006009-YFJ",
+    "name" : "game-1000006009-YFJ",
     "folder" : "/jaicp"
   },
   "settings" : {
@@ -16,7 +16,7 @@
     "shared" : false
   },
   "intents" : [ {
-    "id" : 4725885,
+    "id" : 4800752,
     "path" : "/пока",
     "enabled" : true,
     "shared" : false,
@@ -25,7 +25,7 @@
     } ],
     "priority" : 0
   }, {
-    "id" : 4725886,
+    "id" : 4800753,
     "path" : "/привет",
     "enabled" : true,
     "shared" : false,
