@@ -5,12 +5,12 @@ entryPoint: main.sc
 botEngine: v2
 language: ru
 
+injector:
+    botName: рубик
+
 tests:
   include:
     - test.xml
-
-injector:
-    botName: рубик
 
 sts:
     noMatchThreshold: 0.2

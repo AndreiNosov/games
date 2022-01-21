@@ -8,16 +8,16 @@ require: slotfilling/slotFilling.sc
   
   
 
-theme: /comMod_BullsAndCowsGame
+theme: /BullsAndCowsGame
 
     state: Start
-        q!: $regex</start>
+        q!: $regexp</start>
         intent!: /привет
         script:
             $temp.botName = capitalize($injector.botName);
         random: 
-            a: Привет. Я Бот {{temp.botName}}. Умею играть в Быки и коровы. Сыграем?
-            a: Приветствую. Меня зовут {{temp.botName}}. Я могу поиграть с Вами Быки и коровы. Сыграем?
+            a: Привет. Я Бот {{$temp.botName}}. Умею играть в Быки и коровы. Сыграем?
+            a: Приветствую. Меня зовут {{$temp.botName}}. Я могу поиграть с Вами Быки и коровы. Сыграем?
             
         state: ReactYes
             q: {[$beginningWords] [$interjections]} ($yes/$yesAgreeTo/$certainly/$want) {[$please] [$interjections]}
@@ -25,13 +25,13 @@ theme: /comMod_BullsAndCowsGame
             q: * ($yes/$yesAgreeTo/$certainly) давай (игра*/сыгра*) *
             script:
                 checkCustomAnsToGo();
-            go!: /comMod_BullsAndCowsGame/BullsAndCows
+            go!: /BullsAndCowsGame/BullsAndCows
     
     state: BullsAndCows
         q!: BullsAndCows
         script:
             $client.isFirstGame = true;
-        go!: /comMod_BullsAndCowsGame/GameOn
+        go!: /BullsAndCowsGame/GameOn
 
     state: GameOn || modal = true
         if: $client.isFirstGame == true
@@ -84,15 +84,15 @@ theme: /comMod_BullsAndCowsGame
                 }
 
             if: $temp.invalidNumb && $client.incorrectNumbersCount > 2
-                go!: /comMod_BullsAndCowsGame/MoreThanTwoIncorrectNumbers
+                go!: /BullsAndCowsGame/MoreThanTwoIncorrectNumbers
             if: $temp.invalidNumb
                 a: Так нечестно! Цифры в {{funcYou("Вашем", "вашем", "твоем")}} числе не должны повторяться! {{funcYou("Попробуйте", "Попробуйте", "Попробуй")}} ещё!
-                go: /comMod_BullsAndCowsGame/GameOn/react_Number
+                go: /BullsAndCowsGame/GameOn/react_Number
             if: $parseTree._guessNumber == $client.numberToGuess
                 a: 4 быка! Ура! {{funcYou("Вы", "Вы", "Ты")}} {{funcYou("угадали", "угадали", "угадал")}} число c {{$client.numberOfTries}}-ой попытки!\n{{funcYou("Хотите", "Хотите", "Хочешь")}} сыграть ещё раз?
-                go!: /comMod_BullsAndCowsGame/WannaPlayAgain
+                go!: /BullsAndCowsGame/WannaPlayAgain
             a: Сейчас у {{funcYou("Вас", "вас", "тебя")}} {{$client.cows}} {{$nlp.conform("корова", $client.cows)}}, {{$client.bulls}} {{$nlp.conform("бык", $client.bulls)}}. \nЭто {{funcYou("Ваша", "ваша", "твоя")}} {{$client.numberOfTries}}-ая попытка. {{funcYou("Попробуйте", "Попробуйте", "Попробуй")}} ещё!
-            go: /comMod_BullsAndCowsGame/GameOn/react_Number
+            go: /BullsAndCowsGame/GameOn/react_Number
 
 
         state: react_IncorrectNumber
@@ -101,9 +101,9 @@ theme: /comMod_BullsAndCowsGame
                 $client.incorrectNumbersCount++;
             if: $client.incorrectNumbersCount <= 2
                 a: Такое число нам не подходит. {{funcYou("Назовите", "Назовите", "Назови")}} четырехзначное число. \nНе {{funcYou("забывайте", "забывайте", "забывай")}}, что цифры не должны повторяться.
-                go: /comMod_BullsAndCowsGame/GameOn/react_Number
+                go: /BullsAndCowsGame/GameOn/react_Number
             else:
-                go!: /comMod_BullsAndCowsGame/MoreThanTwoIncorrectNumbers
+                go!: /BullsAndCowsGame/MoreThanTwoIncorrectNumbers
 
         state: react_HowToPlay
             q: * {$howSyns * играть} *
@@ -116,7 +116,7 @@ theme: /comMod_BullsAndCowsGame
                 a: В числе {{$client.lastEnteredNumber}} {{$client.cows}} {{$nlp.conform("корова", $client.cows)}}, {{$client.bulls}} {{$nlp.conform("бык", $client.bulls)}}. \nЭто была {{funcYou("Ваша", "ваша", "твоя")}} {{$client.numberOfTries}}-ая попытка. {{funcYou("Попробуйте", "Попробуйте", "Попробуй")}} ещё!
             else:
                 a: {{funcYou("Назовите", "Назовите", "Назови")}} любое четырехзначное число. Не {{funcYou("забывайте", "забывайте", "забывай")}}, что цифры не должны повторяться.
-            go: /comMod_BullsAndCowsGame/GameOn/react_Number
+            go: /BullsAndCowsGame/GameOn/react_Number
 
         state: react_Stop
             q: (стоп/stop/хватит/надоел*/закончить/заканчивай)
@@ -129,66 +129,66 @@ theme: /comMod_BullsAndCowsGame
             q: *
             a: {{funcYou("Простите", "Простите", "Прости")}}, я {{funcYou("Вас", "вас", "тебя")}} не понял. {{funcYou("Вы", "Вы", "Ты")}} {{funcYou("хотите", "хотите", "хочешь")}} продолжить игру? Или {{funcYou("сдаётесь?", "сдаётесь?", "сдаёшься?")}}
             buttons:
-                "Продолжить" -> /comMod_BullsAndCowsGame/Continue
-                "Сдаюсь" -> /comMod_BullsAndCowsGame/GiveUp
+                "Продолжить" -> /BullsAndCowsGame/Continue
+                "Сдаюсь" -> /BullsAndCowsGame/GiveUp
         
         state: react_WannaGiveUp
             q: * $giveUp *
             a: {{funcYou("Вы", "Вы", "Ты")}} действительно {{funcYou("хотите", "хотите", "хочешь")}} сдаться?
             buttons:
-                "ДА" -> /comMod_BullsAndCowsGame/GiveUp
+                "ДА" -> /BullsAndCowsGame/GiveUp
             buttons:
-                "НЕТ" -> /comMod_BullsAndCowsGame/Continue
+                "НЕТ" -> /BullsAndCowsGame/Continue
 
             state: react_Yes
                 q: ($yes/$want)
-                go!: /comMod_BullsAndCowsGame/GiveUp
+                go!: /BullsAndCowsGame/GiveUp
 
             state: react_No
                 q: $no
-                go!: /comMod_BullsAndCowsGame/Continue
+                go!: /BullsAndCowsGame/Continue
 
         state: IDontKnow
             q: * $knowNot *
             q: [$beginningWords] $no
             a: {{funcYou("Сдаётесь?", "Сдаётесь?", "Сдаёшься?")}}
             buttons:
-                "Сдаюсь" -> /comMod_BullsAndCowsGame/GiveUp
+                "Сдаюсь" -> /BullsAndCowsGame/GiveUp
             buttons:
-                "Нет" -> /comMod_BullsAndCowsGame/Continue
+                "Нет" -> /BullsAndCowsGame/Continue
 
     state: Continue
         a: Отлично! {{funcYou("Попробуйте", "Попробуйте", "Попробуй")}} угадать моё число! Не {{funcYou("забывайте", "забывайте", "забывай")}}, что цифры не должны повторяться.
-        go: /comMod_BullsAndCowsGame/GameOn/react_Number
+        go: /BullsAndCowsGame/GameOn/react_Number
 
     state: GiveUp
         a: Это было число {{$client.numberToGuess}}. \n{{funcYou("Хотите", "Хотите", "Хочешь")}} сыграть ещё раз?
-        go!: /comMod_BullsAndCowsGame/WannaPlayAgain
+        go!: /BullsAndCowsGame/WannaPlayAgain
 
     state: MoreThanTwoIncorrectNumbers
         script:
             $client.incorrectNumbersCount = 0;
         a: {{funcYou("Cдаётесь?", "Cдаётесь?", "Cдаёшься?")}} Или, может быть, напомнить {{funcYou("Вам", "вам", "тебе")}} правила?
         buttons:
-            "Продолжить" -> /comMod_BullsAndCowsGame/Continue
+            "Продолжить" -> /BullsAndCowsGame/Continue
         buttons:
-            "Напомнить правила" -> /comMod_BullsAndCowsGame/GameOn/react_HowToPlay
+            "Напомнить правила" -> /BullsAndCowsGame/GameOn/react_HowToPlay
         buttons:
-            "Сдаюсь" -> /comMod_BullsAndCowsGame/GiveUp
+            "Сдаюсь" -> /BullsAndCowsGame/GiveUp
 
     state: WannaPlayAgain
         buttons:
-            "Играть еще раз" -> /comMod_BullsAndCowsGame/GameOn
+            "Играть еще раз" -> /BullsAndCowsGame/GameOn
         buttons:
             "Спасибо!"
 
         state: react_Yes
             q: ($yes/$lets/можно/давай [еще])
-            go: /comMod_BullsAndCowsGame/GameOn
+            go: /BullsAndCowsGame/GameOn
 
         state: react_No
             q: $no [$thanks]
-            go!: /comMod_BullsAndCowsGame/GameOn/react_Stop
+            go!: /BullsAndCowsGame/GameOn/react_Stop
     
     state: Bye
         q: пока
@@ -196,7 +196,7 @@ theme: /comMod_BullsAndCowsGame
         
     state: Stop
         q: $no [$thanks]
-        go!: /comMod_BullsAndCowsGame/GameOn/react_Stop
+        go!: /BullsAndCowsGame/GameOn/react_Stop
 
     state: NoMatch
         event!: noMatch
