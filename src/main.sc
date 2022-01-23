@@ -122,6 +122,8 @@ theme: /BullsAndCowsGame
             q: (стоп/stop/хватит/надоел*/закончить/заканчивай)
             q: * (выйти) *
             q: * (назад) *
+            q: * (хватит) *
+            q: * (не хочу) *
             a: Хорошо, {{funcYou("давайте", "давайте", "давай")}} закончим. Это было число {{$client.numberToGuess}}.
             go!: /techEndOfTheme
 
@@ -180,7 +182,7 @@ theme: /BullsAndCowsGame
         buttons:
             "Играть еще раз" -> /BullsAndCowsGame/GameOn
         buttons:
-            "Спасибо!"
+            "Спасибо!" -> /BullsAndCowsGame/Thanks
 
         state: react_Yes
             q: ($yes/$lets/можно/давай [еще])
@@ -190,6 +192,11 @@ theme: /BullsAndCowsGame
             q: $no [$thanks]
             go!: /BullsAndCowsGame/GameOn/react_Stop
     
+    state: Thanks
+        a: Всегда пожалуйста. \nЕсли {{funcYou("Хотите", "Хотите", "Хочешь")}} сыграть ещё раз жмите на кнопку старт
+        buttons:
+            "Старт" -> /BullsAndCowsGame/Start
+                
     state: Bye
         q: пока
         a: Пока пока
