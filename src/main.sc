@@ -17,7 +17,7 @@ theme: /BullsAndCowsGame
             $temp.botName = capitalize($injector.botName);
         random: 
             a: Привет. Я Бот {{$temp.botName}}. Умею играть в Быки и коровы. Сыграем?
-            a: Приветствую. Меня зовут {{$temp.botName}}. Я могу поиграть с Вами Быки и коровы. Сыграем?
+            a: Приветствую. Меня зовут {{$temp.botName}}. Я могу поиграть с {{funcYou("Вами", "вами", "тобой")}} Быки и коровы. Сыграем?
             
         state: ReactYes
             q: {[$beginningWords] [$interjections]} ($yes/$yesAgreeTo/$certainly/$want) {[$please] [$interjections]}
@@ -26,6 +26,10 @@ theme: /BullsAndCowsGame
             script:
                 checkCustomAnsToGo();
             go!: /BullsAndCowsGame/BullsAndCows
+            
+        state: ReactNo
+            q: $no [$thanks]
+            go!: /BullsAndCowsGame/GameOn/react_Stop
     
     state: BullsAndCows
         q!: BullsAndCows
